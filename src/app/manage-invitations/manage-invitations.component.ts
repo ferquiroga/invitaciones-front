@@ -69,13 +69,6 @@ export class ManageInvitationsComponent implements OnInit {
   }
 
   deletePerson(id:number){
-    this.personService.deletePerson(id).subscribe(data => {
-      console.log(data);
-      this.getPersons();
-    })
-  }
-
-  deletePerson2(id:number){
     swal({
       title: 'Va a eliminar una persona',
       text: "Está seguro?",
