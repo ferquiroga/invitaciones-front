@@ -1,0 +1,34 @@
+<div class="example-container">
+    <h2>Posibles invitados</h2>
+    <div
+      cdkDropList
+      #posibleList="cdkDropList"
+      [cdkDropListData]="people"
+      [cdkDropListConnectedTo]="[confirmedList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" cdkDrag *ngFor="let person of people">
+        <div class="row col-12">
+            <div class="col-8">{{person.name}} {{person.surname}}</div>
+            <div class="col-2 text-right"><i class="bi bi-pencil" (click)= "updatePerson(person.id)"></i></div>
+            <div class="col-2 text-right"><i class="bi bi-trash3" (click)= "deletePerson2(person.id)"></i></div>
+        </div>
+      </div>
+      
+    </div>
+    <button (click)= "addPerson()" class="btn btn-primary" style="margin-left : 10px;">Agregar</button>
+</div>
+  
+<div class="example-container">
+    <h2>Invitados confirmados</h2>
+    <div
+      cdkDropList
+      #confirmedList="cdkDropList"
+      [cdkDropListData]="confirmed"
+      [cdkDropListConnectedTo]="[posibleList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" cdkDrag *ngFor="let confirmedPerson of confirmed">{{confirmedPerson.name}} {{confirmedPerson.surname}}</div>
+    </div>
+    <button (click)= "invite()" class="btn btn-primary" style="margin-left : 10px;">Invitar</button>
+</div>

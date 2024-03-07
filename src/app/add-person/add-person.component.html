@@ -1,0 +1,57 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Agregar una persona</h3>
+    <form (ngSubmit)="onSubmit()" #personForm = "ngForm">
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="form-control" 
+                required
+                [(ngModel)]="person.name"
+                #name="ngModel"
+            >
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+                <div *ngIf="name.errors?.['required']">Campo requerido.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Apellido:</label>
+            <input
+                type="text" 
+                id="surname" 
+                name="surname" 
+                class="form-control" 
+                required
+                [(ngModel)]="person.surname"
+                #surname="ngModel"
+            >
+            <div *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="alert">
+                <div *ngIf="surname.errors?.['required']">Campo requerido.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control" 
+                required 
+                [(ngModel)]="person.email" 
+                pattern ="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                #email="ngModel"
+            >
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert">
+                <div *ngIf="email.errors?.['required']">Campo requerido.</div>
+                <div *ngIf="email.errors?.['pattern']">Formato incorrecto.</div>
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-6"><button class="btn btn-success" [disabled]= "!personForm.form.valid">Guardar</button></div>
+            <div class="col-6 text-right"><button class="btn btn-primary" (click)= " goToList()">Cancelar</button></div>
+        </div>
+    </form>
+</div> 
